@@ -1,0 +1,344 @@
+/* src/pages/Connect/Connect.css */
+
+.connect {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  height: 100dvh;            /* fits the screen exactly, no vertical scroll */
+  box-sizing: border-box;
+  padding: clamp(20px, 5vh, 56px) clamp(24px, 4vw, 60px) clamp(16px, 3vh, 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ---------- Heading ---------- */
+
+.connect-title {
+ font-family: var(--font-main);
+  font-size: calc(32 * var(--u));
+  font-weight: 700;
+  color: var(--color-text-light);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 0 0 clamp(6px, 1.2vh, 12px);
+  flex-shrink: 0;
+}
+
+.connect-arrow {
+ color: var(--color-accent);
+  text-shadow: 0 0 calc(40 * var(--u)) rgba(77, 184, 232, 0.8);
+  font-size: calc(100 * var(--u));
+}
+
+.connect-subtitle {
+  font-family: var(--font-main);
+  color: var(--color-text-light);
+  font-size: clamp(1rem, 2.2vh, 1.2rem);
+  margin: 0 0 clamp(8px, 2vh, 24px);
+  flex-shrink: 0;
+}
+
+/* Mild glitch: calm for most of the cycle, a brief flicker near the end */
+.glitch {
+  position: relative;
+  display: inline-block;
+  animation: glitch-shake 7s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  text-shadow: none;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: var(--color-accent);
+  animation: glitch-slice-a 7s infinite;
+}
+
+.glitch::after {
+  color: #9be7ff;
+  animation: glitch-slice-b 7s infinite;
+}
+
+@keyframes glitch-shake {
+  0%, 91%, 97%, 100% { transform: translate(0, 0); }
+  92% { transform: translate(1px, 0); }
+  93.5% { transform: translate(-1px, 1px); }
+  95% { transform: translate(1px, -1px); }
+  96% { transform: translate(-1px, 0); }
+}
+
+@keyframes glitch-slice-a {
+  0%, 91%, 97%, 100% { opacity: 0; }
+  92% { opacity: 0.8; transform: translate(-2px, 0); clip-path: inset(8% 0 62% 0); }
+  94% { opacity: 0.8; transform: translate(2px, 0); clip-path: inset(55% 0 15% 0); }
+  96% { opacity: 0.6; transform: translate(-1px, 0); clip-path: inset(30% 0 42% 0); }
+}
+
+@keyframes glitch-slice-b {
+  0%, 91%, 97%, 100% { opacity: 0; }
+  93% { opacity: 0.7; transform: translate(2px, 0); clip-path: inset(65% 0 8% 0); }
+  95% { opacity: 0.7; transform: translate(-2px, 0); clip-path: inset(15% 0 55% 0); }
+  96.5% { opacity: 0.5; transform: translate(1px, 0); clip-path: inset(42% 0 32% 0); }
+}
+
+/* ---------- Stage (rings, photo, cards) ---------- */
+
+.connect-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;             /* lets the stage shrink instead of forcing a scroll */
+  width: 100%;
+  max-width: 1100px;
+  container-type: size;      /* children size themselves from the stage (cqh / cqw) */
+  --outer: min(94cqh, 620px);
+  --inner: calc(var(--outer) * 0.77);
+}
+
+/* Rings rotate; each dot is a CHILD of its ring, so it always rides exactly on the line */
+.ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border: 1px solid rgba(77, 184, 232, 0.25);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ring-outer {
+  width: var(--outer);
+  height: var(--outer);
+  --start: -35deg;           /* where the dot starts: upper left */
+  animation: ring-spin 60s linear infinite;
+}
+
+.ring-inner {
+  width: var(--inner);
+  height: var(--inner);
+  --start: 120deg;           /* lower right */
+  animation: ring-spin-reverse 45s linear infinite;
+}
+
+.ring-dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;     /* centres the dot on the ring line */
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px rgba(77, 184, 232, 0.9), 0 0 24px rgba(77, 184, 232, 0.5);
+}
+
+@keyframes ring-spin {
+  from { transform: rotate(var(--start)); }
+  to   { transform: rotate(calc(var(--start) + 360deg)); }
+}
+
+@keyframes ring-spin-reverse {
+  from { transform: rotate(var(--start)); }
+  to   { transform: rotate(calc(var(--start) - 360deg)); }
+}
+
+.connect-photo {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(44cqh, 180px);
+  height: min(44cqh, 180px);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 40px rgba(77, 184, 232, 0.7), 0 0 80px rgba(77, 184, 232, 0.4);
+  z-index: 2;
+}
+
+/* ---------- Cards ---------- */
+
+.connect-card {
+  position: absolute;
+  z-index: 3;
+  box-sizing: border-box;
+  width: clamp(230px, 30cqw, 340px);
+  padding: clamp(28px, 5cqh, 24px) clamp(18px, 5cqw, 32px);
+  background: linear-gradient(135deg, rgba(20, 45, 70, 0.6), rgba(10, 25, 45, 0.85));
+  border: 1px solid var(--color-border);
+
+  clip-path: polygon(
+    0 0,
+    calc(100% - 24px) 0,
+    100% 24px,
+    100% 100%,
+    24px 100%,
+    0 calc(100% - 24px)
+  );
+
+  animation: card-float 6s ease-in-out infinite;
+   transition: transform 0.4s ease, filter 0.4s ease;
+  will-change: transform;
+}
+
+.connect-card:hover {
+  transform: scale(1.03);
+  filter:
+    drop-shadow(0 0 8px rgba(77, 184, 232, 0.35))
+    drop-shadow(0 0 18px rgba(77, 184, 232, 0.2));
+    box-shadow: inset 0 0 0 1px var(--color-accent), 0 0 24px rgba(77, 184, 232, 0.3);
+}
+
+.connect-card h4 {
+  font-family: var(--font-main);
+  color: var(--color-accent);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin: 0 0 clamp(4px, 1cqh, 10px);
+}
+
+.connect-card p {
+  font-family: var(--font-main);
+  color: var(--color-text-light);
+  font-size: clamp(0.85rem, 1.5cqw, 1.05rem);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Each card drifts at its own pace so they never move in sync */
+.top-left     { top: 14%;    left: 8%;  animation-duration: 6s;   animation-delay: 0s; }
+.bottom-left  { bottom: 14%; left: 8%;  animation-duration: 7.5s; animation-delay: -2s; }
+.top-right    { top: 10%;    right: 8%; animation-duration: 7s;   animation-delay: -1s; }
+.bottom-right { bottom: 14%; right: 8%; animation-duration: 6.5s; animation-delay: -3.5s; }
+
+.top-right,
+.bottom-right {
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+}
+
+@keyframes card-float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -10px; }
+}
+
+/* ---------- Small screens: stack the cards and allow scrolling ---------- */
+
+@media (max-width: 820px) {
+  .connect {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .connect-stage {
+    container-type: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    flex: none;
+  }
+
+  .ring { display: none; }
+
+  .connect-photo {
+    position: static;
+    width: 140px;
+    height: 140px;
+    margin: 8px 0 16px;
+  }
+
+  .connect-card,
+  .top-left, .bottom-left, .top-right, .bottom-right {
+    position: static;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .connect-card p { font-size: 1rem; }
+}
+
+/* ---------- Respect reduced-motion settings ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .ring,
+  .connect-card,
+  .glitch,
+  .glitch::before,
+  .glitch::after {
+    animation: none;
+  }
+}
+
+/* Clickable cards (Behance, LinkedIn) */
+.connect-card-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.connect-card-link:hover,
+.connect-card-link:focus-visible {
+  background: linear-gradient(135deg, rgba(40, 90, 130, 0.7), rgba(15, 40, 70, 0.9));
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+@media (max-width: 820px) {
+  /* the browser page stops scrolling; the content area scrolls instead */
+  html:has(.connect),
+  body:has(.connect) {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  /* scroll box that ends exactly where the bottom nav begins.
+     profile and page stack inside it, so they scroll together */
+  body .app-content:has(.connect) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: calc(100dvh - var(--nav-h, 150px));
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* profile: normal flow, sits above the heading and scrolls away with it */
+  body .app-content:has(.connect) .sidebar-profile {
+    position: static;
+    flex-shrink: 0;
+    height: auto;
+    padding: 16px 16px 4px;
+    background: none;
+  }
+
+  section.connect {
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding-top: 248px;
+    padding-bottom: 32px;      /* space after the last card */
+  }
+
+  /* smaller heading */
+  .connect-title {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    gap: 10px;
+  }
+
+  .connect-arrow {
+    font-size: clamp(3rem, 6vw, 2.2rem);
+    text-shadow: 0 0 14px rgba(77, 184, 232, 0.8);
+  }
+}
+

@@ -1,0 +1,38 @@
+.particle-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle-space {
+  position: absolute;
+  inset: -30px; /* bigger than the screen, so the shift never shows a gap */
+  will-change: transform;
+}
+
+.particle-glow {
+  position: absolute;
+  top: 45%;
+  left: 62%;
+  width: 1300px;
+  height: 1300px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+   rgba(77, 184, 232, 0.55) 0%,
+    rgba(77, 184, 232, 0.55) 15%,
+    rgba(77, 184, 232, 0.06) 60%,
+    transparent 75%
+  );
+  filter: blur(40px);
+}
+
+.particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}

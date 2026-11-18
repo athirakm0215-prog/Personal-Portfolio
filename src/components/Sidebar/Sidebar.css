@@ -1,0 +1,349 @@
+/* src/components/Sidebar/Sidebar.css */
+body:has(.no-sidebar-space) .sidebar-profile {
+ position: fixed;
+  top: auto;     /* auto = stays in its normal spot, same as every other page */
+  left: auto;
+  z-index: 1000;
+}
+
+.sidebar {
+  /* wider column so the menu matches the design.
+     If your layout reads --sidebar-w elsewhere, set it to calc(390 * var(--u)) too. */
+  width: max(var(--sidebar-w), calc(430 * var(--u)));
+  /* more top space: name sits lower, menu starts lower */
+  padding: calc(70 * var(--u)) calc(40 * var(--u)) calc(40 * var(--u)) calc(48 * var(--u));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: calc(22 * var(--u));
+  margin-bottom: calc(80 * var(--u));   /* clear gap between name and menu */
+  white-space: nowrap;
+}
+
+.sidebar-avatar {
+  flex-shrink: 0;
+  width: clamp(48px, calc(66 * var(--u)), 80px);
+  height: clamp(48px, calc(66 * var(--u)), 80px);
+  border-radius: 50%;
+  object-fit: cover;
+  background: rgb(207, 207, 207);
+  padding: 2px;
+}
+
+.sidebar-name {
+  font-family: var(--font-main);
+  color: var(--color-accent);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  font-size: clamp(1.3rem, calc(38 * var(--u)), 2.4rem);
+  line-height: 1;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: calc(34 * var(--u)); /* equal spacing, not touching */
+}
+
+.sidebar-item {
+  padding: 3px; /* the gap between outer border and inner box */
+  background: linear-gradient(to right, #2a5a7a, #123047, #2a5a7a);
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar-item-gap {
+  display: block;
+  padding: 4px;
+  background: var(--color-bg-dark);
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+}
+
+.sidebar-item-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: calc(22 * var(--u)) calc(32 * var(--u));
+  background: linear-gradient(to bottom, rgba(10, 25, 45, 0.9), rgba(5, 15, 28, 0.95), rgba(10, 25, 45, 0.9));
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  color: var(--color-text-muted);
+  font-family: var(--font-main);
+  font-size: clamp(1.4rem, calc(30 * var(--u)), 1.7rem);
+
+}
+
+/* .sidebar-icon {
+  width: clamp(20px, calc(36 * var(--u)), 34px);
+  height: clamp(20px, calc(36 * var(--u)), 34px);
+  object-fit: contain;
+  filter: none;
+  background: transparent;
+}
+
+
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item.active .sidebar-icon {
+  filter: brightness(0) invert(1);
+  transform: scale(1.08);
+} */
+
+.sidebar-icon {
+  width: clamp(20px, calc(40 * var(--u)), 34px);
+  height: clamp(20px, calc(40 * var(--u)), 34px);
+  object-fit: contain;
+  background: transparent;
+
+  /* Normal icon colour: muted blue-grey */
+  filter: brightness(0) saturate(100%)
+          invert(66%) sepia(12%) saturate(600%)
+          hue-rotate(160deg) brightness(90%);
+
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item.active .sidebar-icon {
+   filter: brightness(0) invert(1);
+  transform: scale(1.08);
+}
+
+.sidebar-item:hover,
+.sidebar-item.active {
+  background: linear-gradient(to right, #4db8e8, #1a4a6e, #4db8e8);
+}
+
+.sidebar-item:hover .sidebar-item-inner,
+.sidebar-item.active .sidebar-item-inner {
+  color: var(--color-text-light);
+  background: linear-gradient(to bottom, rgba(20, 50, 80, 0.9), rgba(10, 30, 55, 0.95), rgba(20, 50, 80, 0.9));
+}
+
+@media (max-width: 640px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    gap: 10px;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .sidebar-profile {
+    display: none;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .sidebar-item-inner span {
+    display: none;
+  }
+}
+
+
+
+/* =====================================
+   OTHER UI WORKS - REMOVE SIDEBAR COLUMN
+===================================== */
+
+.app-content:has(.no-sidebar-space) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.app-content:has(.no-sidebar-space) > .sidebar {
+  width: 0;
+  min-width: 0;
+  max-width: 0;
+  flex: 0 0 0;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+/* Keep only the profile visible */
+.app-content:has(.no-sidebar-space) .sidebar-profile {
+  position: fixed;
+  top: calc(30 * var(--u));
+  left: calc(40 * var(--u));
+  z-index: 1000;
+}
+
+/* Hide navigation on this page */
+.app-content:has(.no-sidebar-space) .sidebar-nav {
+  display: none;
+}
+
+
+
+/* ==========================================================
+   RESPONSIVE: TABLET + MOBILE  (bottom of Sidebar.css)
+   ========================================================== */
+
+@media (max-width: 1024px) {
+  :root {
+    --header-h: 76px;
+    --nav-h: calc(150px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sidebar {
+    display: contents;
+  }
+
+  /* ---------- TOP: avatar + name (no bar, soft fade) ---------- */
+  .sidebar-profile,
+  .app-content:has(.no-sidebar-space) .sidebar-profile,
+  body:has(.no-sidebar-space) .sidebar-profile {
+    display: flex !important;          /* beats any old display:none */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-h);
+    margin: 0;
+    padding: 0 24px;
+    gap: 14px;
+    align-items: center;
+    justify-content: flex-start;       /* "center" if you prefer */
+    background: linear-gradient(to bottom, rgba(5, 11, 20, 0.85), rgba(5, 11, 20, 0));
+    z-index: 1000;
+  }
+
+  .sidebar-avatar {
+    width: 46px;
+    height: 46px;
+    border: 2px solid rgba(77, 184, 232, 0.6);
+    background: #0a1c2e;
+  }
+
+  .sidebar-name {
+    font-size: 1.4rem;
+  }
+
+  /* ---------- BOTTOM: floating 3 + 3 buttons ---------- */
+  .sidebar-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 28px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(to top, rgba(5, 11, 20, 0.9) 45%, rgba(5, 11, 20, 0));
+    pointer-events: none;              /* fade area doesn't block taps */
+    z-index: 1000;
+  }
+
+  .sidebar-item {
+    pointer-events: auto;
+    display: block;
+    min-width: 0;
+    padding: 2px;
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+
+  .sidebar-item-gap {
+    padding: 3px;
+  }
+
+  .sidebar-item-inner {
+    display: flex;
+    flex-direction: row;               /* label left, icon right */
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    font-size: 1.05rem;
+    white-space: nowrap;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  }
+
+  .sidebar-item-inner span {
+    display: inline !important;        /* labels always visible */
+  }
+
+  .sidebar-icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* ---------- MOBILE (≤ 600px) ---------- */
+@media (max-width: 600px) {
+  :root {
+    --header-h: 66px;
+    --nav-h: calc(136px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sidebar-profile,
+  .app-content:has(.no-sidebar-space) .sidebar-profile,
+  body:has(.no-sidebar-space) .sidebar-profile {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .sidebar-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sidebar-name {
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .sidebar-nav {
+    gap: 8px;
+    padding: 24px 10px calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sidebar-item {
+    clip-path: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
+  }
+
+  .sidebar-item-gap {
+    padding: 2px;
+  }
+
+  .sidebar-item-inner {
+    flex-direction: column-reverse;    /* icon on top, name below */
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 2px;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+  }
+
+  .sidebar-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-content {
+    position: relative;      /* the profile is positioned inside this */
+  }
+
+  .sidebar-profile,
+  .app-content:has(.no-sidebar-space) .sidebar-profile,
+  body:has(.no-sidebar-space) .sidebar-profile {
+    position: absolute;      /* was fixed: now it scrolls up with the content */
+    background: none;
+  }
+}

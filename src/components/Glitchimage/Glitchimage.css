@@ -1,0 +1,65 @@
+.glitch-image {
+  position: relative;
+  overflow: hidden;
+  /* feathers the rectangle edge into the page background — color is untouched, only the edge alpha fades */
+  -webkit-mask-image: radial-gradient(ellipse 75% 80% at center, #000 60%, rgba(0,0,0,0.35) 82%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 80% at center, #000 60%, rgba(0,0,0,0.35) 82%, transparent 100%);
+}
+
+.glitch-image-base,
+.glitch-image-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.glitch-image-layer {
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* entrance mode: base image itself is invisible until the glitch reveals it, then it settles and stays */
+.glitch-image-entrance .glitch-image-base {
+  animation: glitch-reveal-base 1s steps(1, end) forwards;
+}
+
+.glitch-image-entrance .glitch-layer-red {
+  animation: glitch-reveal-red 1s steps(1, end) forwards;
+}
+
+.glitch-image-entrance .glitch-layer-cyan {
+  animation: glitch-reveal-cyan 1s steps(1, end) forwards;
+}
+
+@keyframes glitch-reveal-base {
+  0%   { opacity: 0; clip-path: inset(0 0 100% 0); }
+  10%  { opacity: 1; clip-path: inset(60% 0 10% 0); }
+  20%  { clip-path: inset(10% 0 65% 0); }
+  30%  { clip-path: inset(40% 0 30% 0); }
+  45%  { clip-path: inset(0 0 0 0); transform: translate(-4px, 0); }
+  55%  { transform: translate(3px, 0); }
+  70%  { transform: translate(0, 0); }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); transform: translate(0, 0); }
+}
+
+@keyframes glitch-reveal-red {
+  0%   { opacity: 0; }
+  10%  { opacity: 0.7; clip-path: inset(20% 0 55% 0); transform: translate(-8px, 1px); }
+  25%  { opacity: 0.7; clip-path: inset(55% 0 10% 0); transform: translate(6px, -1px); }
+  40%  { opacity: 0.5; clip-path: inset(10% 0 70% 0); transform: translate(-4px, 0); }
+  60%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes glitch-reveal-cyan {
+  0%   { opacity: 0; }
+  15%  { opacity: 0.7; clip-path: inset(10% 0 70% 0); transform: translate(7px, 0); }
+  30%  { opacity: 0.7; clip-path: inset(65% 0 5% 0); transform: translate(-6px, 1px); }
+  45%  { opacity: 0.5; clip-path: inset(30% 0 40% 0); transform: translate(4px, 0); }
+  65%  { opacity: 0; }
+  100% { opacity: 0; }
+}

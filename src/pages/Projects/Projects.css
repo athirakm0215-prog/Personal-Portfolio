@@ -1,0 +1,1649 @@
+/* src/pages/Projects/Projects.css
+
+
+
+/* ===== shared ===== */
+.projects-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(24 * var(--u));
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: calc(32 * var(--u));
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-text-light);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.projects-arrow {
+  color: var(--color-accent);
+  text-shadow: 0 0 calc(40 * var(--u)) rgba(77, 184, 232, 0.8);
+  font-size: calc(100 * var(--u));
+}
+
+.chevron {
+  width: calc(30 * var(--u));
+  height: calc(50 * var(--u));
+  flex-shrink: 0;
+}
+
+.long-arrow {
+  width: calc(54 * var(--u));
+  height: calc(20 * var(--u));
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+/* ===== PAGE 1: GRID ===== */
+.projects {
+  flex: 1;
+  min-width: 0;
+  height: calc(1080 * var(--u));
+  max-height: 100vh;
+  padding: 0 calc(130 * var(--u)) 0 calc(120 * var(--u));
+}
+
+.projects .projects-title {
+  height: calc(230 * var(--u));
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: calc(324 * var(--u));
+  gap: calc(33 * var(--u)) calc(21 * var(--u));
+}
+
+.project-card-wrap {
+  height: 100%;
+}
+
+.project-card {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  padding: calc(40 * var(--u)) calc(27 * var(--u)) 0;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.project-card-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(20, 55, 90, 0.1), rgba(18, 70, 110, 0.9));
+  transition: box-shadow 0.3s ease;
+}
+
+.project-card:hover .project-card-bg {
+  box-shadow: inset 0 0 0 1px var(--color-accent), 0 0 24px rgba(77, 184, 232, 0.3);
+}
+
+.project-thumb {
+  position: relative;
+  height: calc(215 * var(--u));
+  overflow: hidden;
+}
+
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card-footer {
+  position: relative;
+  height: calc(69 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-main);
+  font-size: calc(22 * var(--u));
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--color-text-light);
+}
+
+.project-card-footer img{
+   filter: brightness(0) saturate(100%)
+    invert(55%) sepia(83%) saturate(1800%)
+    hue-rotate(165deg) brightness(100%);
+    transform: rotate(90deg) translatey(-5px);
+}
+
+.project-other-inner {
+  position: relative;
+  height: calc(255 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(18 * var(--u));
+  background: rgba(15, 46, 77, 0.45);
+  font-family: var(--font-main);
+  font-size: calc(24 * var(--u));
+  font-weight: 600;
+  color: var(--color-text-light);
+  
+}
+
+.project-other-inner img {
+ 
+  filter: brightness(0) saturate(100%)
+    invert(55%) sepia(83%) saturate(1800%)
+    hue-rotate(165deg) brightness(100%);
+    transform: rotate(90deg) translatey(-5px);
+}
+
+
+
+/* ===== PAGE 2: DETAIL (everything placed from the design's coordinates) ===== */
+.project-detail {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.project-detail > * {
+  position: absolute;
+  pointer-events: auto;
+}
+
+
+  .project-detail-title {
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: calc(230 * var(--u));
+  margin: 0;
+  justify-content: center;
+  pointer-events: none;
+   font-family: var(--font-main);
+  font-size: calc(32 * var(--u));
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-text-light);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  
+}
+
+
+
+
+.project-detail-title .projects-arrow {
+   color: var(--color-accent);
+  text-shadow: 0 0 calc(40 * var(--u)) rgba(77, 184, 232, 0.8);
+  font-size: calc(100 * var(--u));
+}
+
+.project-links {
+  left: calc(605 * var(--u));
+  top: calc(195 * var(--u));
+  display: flex;
+  gap: calc(40 * var(--u));
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  gap: calc(20 * var(--u));
+  height: calc(70 * var(--u));
+  padding: 0 calc(60 * var(--u)) 0 calc(52 * var(--u));
+  background: rgba(13, 42, 71, 0.4);
+  clip-path: polygon(
+    calc(20 * var(--u)) 0, 100% 0, 100% 100%, 0 100%, 0 calc(20 * var(--u))
+  );
+  font-family: var(--font-main);
+  font-size: calc(32 * var(--u));
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: color 0.3s ease, background 0.3s ease;
+  
+}
+
+.project-link svg {
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+}
+
+.project-link .project-icon {
+  transition: filter 0.3s ease;
+}
+
+.project-link:hover .project-icon {
+  filter: brightness(0) saturate(100%)
+    invert(55%) sepia(83%) saturate(1800%)
+    hue-rotate(165deg) brightness(100%);
+    transform: rotate(90deg) translatey(-5px);
+}
+
+.project-link:hover {
+  color: var(--color-accent);
+  background: rgba(26, 70, 106, 0.5);
+}
+
+.project-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+   transform: rotate(90deg);
+}
+
+
+.project-detail-image {
+  left: calc(-200 * var(--u));
+  top: calc(345 * var(--u));
+  width: calc(605 * var(--u));
+  height: calc(491 * var(--u));
+  overflow: hidden;
+  background: transparent;
+}
+
+.project-detail-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-detail-body {
+  left: calc(610 * var(--u));
+  top: calc(420 * var(--u));
+  width: calc(880 * var(--u));
+  font-family: var(--font-main);
+  font-size: calc(32 * var(--u));
+  line-height: calc(36 * var(--u));
+  color: var(--color-text-accent);
+}
+
+.project-detail-text p {
+  font-family: var(--font-main);
+  font-size: calc(26 * var(--u));
+  line-height: 1.8;
+  color: var(--color-text-light);
+  max-width: calc(1200 * var(--u));
+}
+
+.project-back-wrap {
+  left: calc(-200 * var(--u));
+  top: calc(900 * var(--u));
+  width: calc(317 * var(--u));
+  height: calc(88 * var(--u));
+}
+
+.project-back {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.project-back .sidebar-item-inner {
+  height: 100%;
+  justify-content: flex-start;
+  gap: calc(39 * var(--u));
+  padding:  0 0 0 calc(45 * var(--u));
+  font-size: calc(32 * var(--u));
+  color: var(--color-text-light);
+}
+
+.project-back .long-arrow {
+  width: calc(76 * var(--u));
+  height: calc(28 * var(--u));
+  
+}
+
+/* sub-menu: same position / look as the About page sub-menu
+   (centred under the content, 505 -> 1800 on the 1920 frame) */
+.project-tabs {
+  left: calc(400 * var(--u));
+  width: calc(1295 * var(--u));
+  top: calc(900 * var(--u));
+  height: calc(68 * var(--u));
+  display: flex;
+  justify-content: center;
+}
+
+.project-tab {
+  height: 100%;
+  padding: 0 calc(54 * var(--u));
+  border: 0;
+  background: none;              /* inactive: no background */
+  font-family: var(--font-main);
+  font-size: calc(24 * var(--u));
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.project-tab:hover:not(.active) {
+  color: var(--color-accent);
+}
+
+.project-tab.active {
+  color: var(--color-accent);
+  background: linear-gradient(to bottom, rgba(77, 184, 232, 0.15), rgba(10, 25, 45, 0.9));
+  clip-path: polygon(
+    calc(16 * var(--u)) 0, 100% 0, 100% 100%, 0 100%, 0 calc(16 * var(--u))
+  );
+  border-bottom: 2px solid var(--color-accent);
+}
+
+/* detail image: soft glow + glitch whenever the tab changes */
+.project-detail-image {
+  /* box-shadow:
+    0 calc(30 * var(--u)) calc(70 * var(--u)) rgba(0, 0, 0, 0.5),
+    0 0 calc(50 * var(--u)) rgba(77, 184, 232, 0.16); */
+  will-change: transform;
+}
+
+.project-glitch-img {
+  animation: project-img-glitch 0.7s steps(1, end) backwards, project-img-settle 0.7s ease-out backwards;
+}
+
+@keyframes project-img-glitch {
+  0%   { opacity: 0.2; transform: translateX(-14px) skewX(5deg);  clip-path: inset(0 0 72% 0);   filter: hue-rotate(90deg) saturate(2.2); }
+  14%  { opacity: 1;   transform: translateX(10px);               clip-path: inset(32% 0 28% 0); filter: hue-rotate(-70deg) saturate(2); }
+  28%  { transform: translateX(-7px) skewX(-3deg);                clip-path: inset(0 0 42% 0);   filter: hue-rotate(40deg); }
+  42%  { transform: translateX(6px);                              clip-path: inset(52% 0 0 0);   filter: saturate(1.8); }
+  58%  { transform: translateX(-3px);                             clip-path: inset(10% 0 10% 0); filter: hue-rotate(-30deg); }
+  74%  { transform: translateX(2px);                              clip-path: inset(0);           filter: hue-rotate(15deg); }
+  88%  { transform: translateX(-1px);                             clip-path: inset(0);           filter: none; }
+  100% { opacity: 1;   transform: none;                           clip-path: inset(0);           filter: none; }
+}
+
+@keyframes project-img-settle {
+  from { opacity: 0.3; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-glitch-img { animation: none; }
+}
+
+/* image that just flew in from the card: no glitch on its first show */
+.project-glitch-img.no-glitch {
+  animation: none;
+}
+
+
+/* =====================================
+   OTHER WORKS - PAGE LAYOUT
+===================================== */
+
+.other-works {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* Use full screen width only for this page */
+.main-content:has(.no-sidebar-space) {
+  margin-left: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-left: 0;
+}
+
+/* =====================================
+   PROFILE SECTION
+===================================== */
+
+/* body:has(.no-sidebar-space) .sidebar-profile {
+  position: fixed;
+  top: calc(30 * var(--u));
+  left: calc(40 * var(--u));
+  z-index: 1000;
+} */
+
+/* =====================================
+   HEADING
+===================================== */
+
+.other-works .project-detail-title {
+  left: max(var(--sidebar-w), calc(0 * var(--u)));
+  right: 0;
+  width: auto;
+  top: 0;
+  height: calc(230 * var(--u));
+  margin: 0;
+  justify-content: center;
+}
+
+/* =====================================
+   PROJECT STAGE
+===================================== */
+/* 
+.other-works.no-sidebar-space .project-stage {
+  position: static;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(100vh - 100 * var(--u));
+  top:50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding-bottom: calc(50 * var(--u));
+  box-sizing: border-box;
+} */
+
+.other-works.no-sidebar-space .project-stage {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100 * var(--u));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  top:50px;
+}
+
+.other-works .works-slider {
+  width: calc(1553 * var(--u));
+  max-width: calc(100% - 100 * var(--u));
+  margin: 0 auto;
+}
+
+.other-works .other-works-back {
+  position: absolute;
+  left: calc(-200 * var(--u));
+  top: calc(900 * var(--u));
+  width: calc(317 * var(--u));
+  height: calc(88 * var(--u));
+}
+
+/* =====================================
+   TWO CARD SLIDER
+===================================== */
+
+.other-works .works-slider {
+  position: relative;
+  width: calc(1553 * var(--u));
+  max-width: calc(100% - 100 * var(--u));
+  margin: 0 auto;
+}
+
+/* =====================================
+   VIEWPORT
+===================================== */
+
+.other-works .works-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* =====================================
+   HORIZONTAL TRACK
+===================================== */
+
+.other-works .works-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  gap: calc(29 * var(--u));
+  width: max-content;
+
+  will-change: transform;
+}
+
+/* =====================================
+   INDIVIDUAL CARDS
+===================================== */
+
+.other-works .works-column {
+  position: relative;
+
+  flex: 0 0 calc(762 * var(--u));
+  width: calc(762 * var(--u));
+
+  min-width: 0;
+}
+
+.other-works .space-item {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.other-works .space-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.other-works .space-art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.other-works .space-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================================
+   LEFT AND RIGHT ARROWS
+===================================== */
+
+.other-works .works-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: calc(10 * var(--u));
+
+  background: transparent;
+  border: none;
+
+  color: var(--color-accent);
+  cursor: pointer;
+
+  transform: translateY(-50%);
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.other-works .works-arrow-left {
+  left: calc(-145 * var(--u));
+}
+
+.other-works .works-arrow-right {
+  right: calc(-145 * var(--u));
+}
+
+.other-works .works-arrow:hover:not(:disabled) {
+  transform: translateY(-50%) scale(1.2);
+}
+
+.other-works .works-arrow:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* =====================================
+   BACK BUTTON
+===================================== */
+
+.other-works.no-sidebar-space .other-works-back {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  margin-top: calc(45 * var(--u)); */
+ position: absolute;
+  left: calc(190 * var(--u));
+  top: calc(900 * var(--u));
+
+  width: calc(317 * var(--u));
+  height: calc(88 * var(--u));
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+}
+
+.project-back:hover {
+  background: linear-gradient(135deg, #4db8e8, #1a4a6e);
+}
+
+.project-back:hover .sidebar-item-inner {
+  color: var(--color-accent);
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 50, 80, 0.9),
+    rgba(10, 30, 55, 0.95)
+  );
+}
+
+/* Change icon colour on hover */
+.project-back:hover .start-icon {
+  filter: brightness(0) saturate(100%)
+    invert(55%) sepia(83%) saturate(1800%)
+    hue-rotate(165deg) brightness(100%);
+}
+
+/* =====================================
+   PREVENT HORIZONTAL SCROLLBAR
+===================================== */
+
+.other-works {
+  overflow-x: clip;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 900px) {
+
+  .other-works .works-slider {
+    width: calc(100% - 70px);
+    max-width: 100%;
+  }
+
+  .other-works .works-arrow-left {
+    left: -35px;
+  }
+
+  .other-works .works-arrow-right {
+    right: -35px;
+  }
+
+  .other-works.no-sidebar-space .project-stage {
+    min-height: calc(100vh - 80px);
+  }
+/* 
+  body:has(.no-sidebar-space) .sidebar-profile {
+    top: 20px;
+    left: 20px;
+  } */
+
+}
+
+/* =====================================
+   SMALL MOBILE SCREENS
+===================================== */
+
+@media (max-width: 600px) {
+
+  .other-works .works-slider {
+    width: calc(100% - 50px);
+  }
+
+  .other-works .works-arrow-left {
+    left: -28px;
+  }
+
+  .other-works .works-arrow-right {
+    right: -28px;
+  }
+
+  .other-works.no-sidebar-space .other-works-back {
+    margin-top: 25px;
+  }
+
+}
+
+
+/* =====================================
+   PREVENT HORIZONTAL PAGE SCROLLBAR
+===================================== */
+
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Responsive adjustment */
+@media (max-width: 900px) {
+  .works-slider {
+    width: calc(100% - 70px);
+    max-width: 100%;
+  }
+
+  .works-arrow-left {
+    left: -35px;
+  }
+
+  .works-arrow-right {
+    right: -35px;
+  }
+}
+
+.role-label {
+  color: #4db8e8;
+  font-weight: 600;
+}
+
+
+
+
+/* Keep profile position consistent across all pages
+.sidebar-profile {
+  position: fixed;
+  top: calc(30 * var(--u));
+  left: calc(40 * var(--u));
+  z-index: 1000;
+} */
+
+/* Profile position only on Other Works page */
+body:has(.other-works.no-sidebar-space) .sidebar-profile {
+  position: fixed;
+  top: calc(70 * var(--u));
+  left: calc(48 * var(--u));
+  z-index: 1000;
+}
+
+
+/* ==========================================================
+   RESPONSIVE: PROJECTS LIST + PROJECT DETAIL (tablet + mobile)
+   Paste at the very bottom of Projects.css
+   ========================================================== */
+
+@media (max-width: 1024px) {
+
+  /* ---------- scroll setup (same as Connect) ---------- */
+  html:has(.projects),
+  html:has(.project-detail:not(.other-works)),
+  body:has(.projects),
+  body:has(.project-detail:not(.other-works)) {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  body .app-content:has(.projects),
+  body .app-content:has(.project-detail:not(.other-works)) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* list page: ends where the bottom nav begins */
+  body .app-content:has(.projects) {
+    height: calc(100dvh - var(--nav-h, 150px));
+  }
+
+  /* detail page: the bottom nav is hidden there, so use the full height */
+  body .app-content:has(.project-detail:not(.other-works)) {
+    height: 100dvh;
+  }
+
+  /* profile sits in normal flow and scrolls away with the page */
+  body .app-content:has(.projects) .sidebar-profile,
+  body .app-content:has(.project-detail:not(.other-works)) .sidebar-profile {
+    position: static;
+    flex-shrink: 0;
+    height: auto;
+    padding: 16px 16px 4px;
+    background: none;
+  }
+
+  /* ---------- smaller heading (both pages) ---------- */
+  .projects .projects-title,
+  .project-detail:not(.other-works) .project-detail-title {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin: 0 0 20px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    gap: 10px;
+    justify-content: center;
+    text-align: center;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+  }
+
+  .projects .projects-title .glitch-heading,
+  .project-detail:not(.other-works) .project-detail-title .glitch-heading {
+    font-size: clamp(2.4rem, 4vw, 1.6rem);
+  }
+
+  .projects .projects-arrow,
+  .project-detail:not(.other-works) .project-detail-title .projects-arrow {
+    font-size: 3rem;
+    text-shadow: 0 0 14px rgba(77, 184, 232, 0.8);
+  }
+
+  /* ==========================================================
+     PAGE 1: PROJECT LIST (one card below another)
+     ========================================================== */
+ .projects {
+  flex: none;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 150px 16px 32px;
+}
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 22px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .project-card-wrap {
+    height: auto;
+  }
+
+  .project-card {
+    height: auto;
+    padding: 20px 18px 0;
+  }
+
+  .project-thumb {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .project-card-footer {
+    height: 60px;
+    font-size: 0.95rem;
+  }
+
+  .project-card-footer img,
+  .project-other-inner img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .project-other-inner {
+    height: 200px;
+    gap: 12px;
+    font-size: 1.1rem;
+  }
+
+  /* ==========================================================
+     PAGE 2: PROJECT DETAIL
+     order: heading -> sub nav -> links -> image -> content -> back
+     ========================================================== */
+  .project-detail:not(.other-works) {
+    position: relative;
+    inset: auto;
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 360px 16px 40px;          /* 190px = heading position, adjust to taste */
+    pointer-events: auto;
+  }
+
+  /* every child goes back into normal flow */
+  .project-detail:not(.other-works) > * {
+    position: static;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .project-detail:not(.other-works) .project-detail-title { order: 1; max-width: none; margin-bottom: 0; }
+  .project-detail:not(.other-works) .project-tabs         { order: 2; }
+  .project-detail:not(.other-works) .project-links        { order: 3; }
+  .project-detail:not(.other-works) .project-detail-image { order: 4; }
+  .project-detail:not(.other-works) .project-detail-body  { order: 5; }
+  .project-detail:not(.other-works) .project-back-wrap    { order: 6; }
+
+  /* ---------- sub nav: same size as the About sub nav ---------- */
+  .project-detail:not(.other-works) .project-tabs {
+    height: 60px;
+    display: flex;
+    justify-content: safe center;
+    overflow-x: auto;                  /* swipe sideways if 4 tabs don't fit */
+    scrollbar-width: none;
+    padding: 0 12px;
+    box-sizing: border-box;
+    margin-top:1.4rem;
+  }
+
+  .project-detail:not(.other-works) .project-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-detail:not(.other-works) .project-tabs .project-tab {
+    flex-shrink: 0;
+    height: auto;
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
+
+  .project-detail:not(.other-works) .project-tabs .project-tab.active {
+    clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px);
+  }
+
+  /* ---------- two link buttons ---------- */
+  .project-detail:not(.other-works) .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .project-detail:not(.other-works) .project-link {
+    height: 52px;
+    gap: 10px;
+    padding: 0 22px 0 26px;
+    font-size: 1rem;
+    clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+  }
+
+  .project-detail:not(.other-works) .project-link .project-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* ---------- image (smaller, keeps its shape) ---------- */
+  .project-detail:not(.other-works) .project-detail-image {
+    height: auto;
+    aspect-ratio: 605 / 491;
+  }
+
+  /* ---------- content ---------- */
+  .project-detail:not(.other-works) .project-detail-body {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .project-detail:not(.other-works) .project-detail-text p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: none;
+  }
+
+  /* ---------- back button ---------- */
+  .project-detail:not(.other-works) .project-back-wrap {
+    width: 240px;
+    height: 64px;
+    
+  }
+
+  .project-detail:not(.other-works) .project-back .sidebar-item-inner {
+    flex-direction: row;               /* undo the mobile icon-on-top nav style */
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+   padding: 0 0 0 36px;
+    font-size: 1.2rem;
+  }
+
+  .project-detail:not(.other-works) .project-back .long-arrow {
+    width: 56px;
+    height: 22px;
+  }
+}
+
+/* ---------- MOBILE (≤ 600px): tighter, sub nav matches About mobile ---------- */
+@media (max-width: 600px) {
+  .project-detail:not(.other-works) .project-tabs .project-tab {
+    font-size: 0.95rem;
+    padding: 10px 16px;
+  }
+
+  .project-detail:not(.other-works) .project-link {
+    height: 48px;
+    padding: 0 16px 0 20px;
+    font-size: 0.9rem;
+  }
+
+  .project-card-footer {
+    font-size: 0.85rem;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE FIXES: detail heading, other works, list bottom
+   (paste at the very bottom of Projects.css)
+   ========================================================== */
+
+/* counter is hidden on desktop */
+.works-counter {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+
+  /* ---------- 1. PROJECTS LIST: last card clears the bottom nav ---------- */
+  .projects {
+    overflow: visible;
+    padding-bottom: calc(var(--nav-h, 150px) + 24px);
+  }
+
+  /* ---------- 2. DETAIL PAGE ORDER: heading -> links -> sub nav -> image ---------- */
+  .project-detail:not(.other-works) .project-links { order: 2; }
+  .project-detail:not(.other-works) .project-tabs  { order: 3; }
+
+  /* ---------- 3. HEADING: small + fixed box (detail + other works) ---------- */
+  .project-detail:not(.other-works) .project-detail-title,
+  .project-detail.other-works .project-detail-title {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    max-width: none;
+    min-height: 0px;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0 8px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    line-height: 1.15;
+    font-size: clamp(1rem, 3.6vw, 1.3rem);
+  }
+
+  .project-detail:not(.other-works) .project-detail-title .glitch-heading,
+  .project-detail.other-works .project-detail-title .glitch-heading {
+    font-size: clamp(1.6rem, 3.6vw, 1.3rem);
+    line-height: 1.15;
+  }
+
+  .project-detail:not(.other-works) .project-detail-title .projects-arrow,
+  .project-detail.other-works .project-detail-title .projects-arrow {
+    font-size: 3rem;
+    line-height: 0;
+    text-shadow: 0 0 12px rgba(77, 184, 232, 0.8);
+  }
+
+  /* ==========================================================
+     4. OTHER UI WORKS: heading, one image, arrows below, back
+     ========================================================== */
+
+  /* scroll setup (same as the other pages; no bottom nav on this page) */
+  html:has(.other-works),
+  body:has(.other-works) {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  body .app-content:has(.other-works) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* profile: normal flow at the top, scrolls away with the page */
+  body .app-content:has(.other-works.no-sidebar-space) .sidebar-profile {
+    position: static;
+    flex-shrink: 0;
+    height: auto;
+    padding: 16px 16px 4px;
+    background: none;
+  }
+
+  /* page becomes a simple vertical stack */
+  .project-detail.other-works {
+    position: relative;
+    inset: auto;
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 0px 16px 40px;      /* same heading position as the other pages */
+    pointer-events: auto;
+    overflow: visible;
+    
+  }
+
+  .project-detail.other-works > * {
+    position: static;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .project-detail.other-works .project-detail-title { order: 1; }
+
+  .project-detail.other-works.no-sidebar-space .project-stage {
+    order: 2;
+    top: auto;
+    min-height: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* ---------- slider: image on top, arrows + counter below it ---------- */
+  .project-detail.other-works .works-slider {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px 24px;
+  }
+
+  .project-detail.other-works .works-viewport {
+    order: 1;
+    flex: 0 0 100%;
+  }
+
+  /* one card fills the viewport; the next one waits just outside it */
+  .project-detail.other-works .works-track {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .project-detail.other-works .works-column {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  /* every wrapper gets its own ratio, so nothing depends on the desktop heights */
+  .project-detail.other-works .space-item,
+  .project-detail.other-works .space-layer,
+  .project-detail.other-works .space-art {
+    height: auto !important;       /* beats the inline desktop height */
+    aspect-ratio: 3 / 2;
+  }
+
+  .project-detail.other-works .space-art img {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  /* arrows: round glowing buttons BELOW the image, never on top of it */
+  .project-detail.other-works .works-arrow {
+    position: static;
+    transform: none;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border: 1px solid rgba(77, 184, 232, 0.55);
+    border-radius: 50%;
+    background: rgba(13, 42, 71, 0.55);
+    box-shadow: 0 0 14px rgba(77, 184, 232, 0.25);
+  }
+
+  .project-detail.other-works .works-arrow img {
+    width: 30px !important;        /* beats the inline 60px */
+    height: 30px !important;
+  }
+
+  .project-detail.other-works .works-arrow:hover:not(:disabled) {
+    transform: scale(1.08);
+  }
+
+  .project-detail.other-works .works-arrow-left  { order: 2; }
+  .project-detail.other-works .works-arrow-right { order: 4; }
+
+  .project-detail.other-works .works-counter {
+    order: 3;
+    display: block;
+    min-width: 76px;
+    text-align: center;
+    font-family: var(--font-main);
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    color: var(--color-text-light);
+  }
+
+  /* ---------- back button: centred below the slider ---------- */
+  .project-detail.other-works.no-sidebar-space .other-works-back {
+    order: 3;
+    position: static;
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .project-detail.other-works .other-works-back .project-back-wrap {
+    width: 240px;
+    height: 64px;
+
+  }
+
+  .project-detail.other-works .project-back .sidebar-item-inner {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 0 0 0 46px;
+    font-size: 1.2rem;
+  }
+
+  .project-detail.other-works .project-back .long-arrow {
+    width: 56px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-detail.other-works .works-arrow {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .projects {
+    padding-bottom: calc(var(--nav-h, 150px) + 70px);   /* raise if still cut */
+  }
+}
+
+@media (max-width: 1024px) {
+  /* text: "VIEW CASE STUDY" */
+  .project-card-footer {
+    font-size: 1.05rem;        /* font size: raise or lower in steps of 0.1rem */
+  }
+
+  /* text: "OTHER UI WORKS" */
+  .project-other-inner {
+    font-size: 1.25rem;
+  }
+
+  /* arrow size on both card types */
+  .project-card-footer img,
+  .project-other-inner img {
+    width: 54px;               /* arrow size */
+    height: 54px;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-card-footer {
+    font-size: 0.95rem;
+  }
+
+  .project-other-inner {
+    font-size: 1.2rem;
+    padding:20px;
+  }
+
+ 
+  .project-card-footer img,
+  .project-other-inner img {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+
+@media (max-width: 1024px) {
+
+  /* ===== A. PROJECT DETAIL: fixed-height scroll box ===== */
+  body .app-content:has(.project-detail:not(.other-works)) {
+    overflow: hidden;              /* only the page below scrolls */
+    justify-content: flex-start;
+  }
+
+  .project-detail:not(.other-works) {
+    height: calc(100dvh - 80px);   /* screen minus the profile row */
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    padding: 16px 16px 40px;       /* 16px = gap under the profile, replaces 360px */
+  }
+
+  /* inside a fixed-height box, children must not squash */
+  .project-detail:not(.other-works) > * {
+    flex-shrink: 0;
+  }
+
+  /* ===== B. OTHER UI WORKS: remove the tall heading box ===== */
+  body .app-content:has(.other-works) {
+    justify-content: flex-start;
+  }
+
+  .project-detail.other-works {
+    justify-content: flex-start;
+    gap: 14px;                     /* gap between heading, image, arrows */
+  }
+
+  .project-detail.other-works .project-detail-title {
+    height: auto !important;       /* beats the desktop 230 * var(--u) */
+    min-height: 0 !important;
+    margin: 20px;
+    gap: 8px;
+  
+  }
+
+  .project-detail.other-works .project-detail-title .glitch-heading {
+    font-size: 2rem;             /* heading text size */
+  }
+
+  .project-detail.other-works .project-detail-title .chevron {
+    width: 18px;                   /* « » icon size */
+    height: 28px;
+   
+  }
+
+  .project-detail.other-works.no-sidebar-space .project-stage {
+    margin-bottom: 100px;
+    padding: 0;
+    min-height: 0;
+    top: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  /* ----- project grid: normal bottom space ----- */
+  .projects {
+    padding-bottom: 32px;           /* space after the last card */
+  }
+
+  /* outer card background shows around the inner box on all 4 sides */
+  .project-card:has(.project-other-inner) {
+    padding-bottom: 20px;
+  }
+
+  /* ----- other works: pull everything up ----- */
+  .project-detail.other-works {
+    margin-top: -40px;             /* raise to move up, lower to move down */
+  }
+}
+
+@media (max-width: 600px) {
+  .project-card:has(.project-other-inner) {
+    padding-bottom: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  /* scroll box + the wrapper inside it: align to the TOP, never the centre */
+  body .app-content:has(.projects),
+  body .app-content:has(.other-works) {
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+  }
+
+  .main-content:has(.projects),
+  .main-content:has(.other-works) {
+    flex: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    align-self: stretch !important;
+  }
+
+  /* the pages themselves */
+  section.projects,
+  .project-detail.other-works {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    justify-content: flex-start !important;
+    align-self: stretch;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* heading position: one fixed value per page, the same at every width */
+  section.projects {
+    padding-top: 150px;           /* gap above the Projects heading */
+  }
+
+  .project-detail.other-works {
+    padding-top: 0;               /* gap above the Other UI Works heading */
+  }
+
+  .project-detail.other-works .project-detail-title {
+    margin: 30px 0 30px !important;  /* replaces margin: 20px */
+    
+  }
+}
+
+/* OTHER UI WORKS - TABLET ONLY (601px to 1024px):
+   arrows stay at the left and right of the image, Back button below it */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  /* a little wider than mobile so the image isn't tiny */
+  .project-detail.other-works > * {
+    max-width: 760px;
+  }
+
+  /* slider goes back to: [arrow] image [arrow] */
+  .project-detail.other-works .works-slider {
+    display: block;
+    position: relative;
+    padding: 0 72px;              /* room for the two side arrows */
+    box-sizing: border-box;
+  }
+
+  .project-detail.other-works .works-viewport {
+    width: 100%;
+  }
+
+  .project-detail.other-works .works-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .project-detail.other-works .works-arrow:hover:not(:disabled) {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .project-detail.other-works .works-arrow-left  { left: 0; }
+  .project-detail.other-works .works-arrow-right { right: 0; }
+
+  .project-detail.other-works .works-arrow img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  /* the sliding number is only for mobile */
+  .project-detail.other-works .works-counter {
+    display: none;
+  }
+
+  /* Back button stays below the image and clears the bottom nav */
+  .project-detail.other-works.no-sidebar-space .project-stage {
+    margin-bottom: 0;
+  }
+
+  .project-detail.other-works {
+    padding-bottom: calc(var(--nav-h, 150px) + 40px);
+  }
+}
+
+
+/* ==========================================
+   RESPONSIVE LAYOUT CLEANUP
+   Tablet + Mobile (1024px and below)
+   ========================================== */
+
+@media (max-width: 1024px) {
+
+  /* Keep the content aligned to the top */
+  body .app-content:has(.projects),
+  body .app-content:has(.other-works) {
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+  }
+
+  .main-content:has(.projects),
+  .main-content:has(.other-works) {
+    flex: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+  }
+
+  /* PROJECT GRID HEADING */
+  section.projects {
+    margin: 0 !important;
+    padding: 150px 16px 32px !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .projects .projects-title {
+    position: relative;
+    height: auto;
+    width: 100%;
+    margin: 0 0 24px;
+    justify-content: center;
+  }
+
+  /* OTHER WORKS PAGE */
+  .project-detail.other-works {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start !important;
+    gap: 24px;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 16px 40px !important;
+    overflow: visible;
+  }
+
+  /* Keep heading at a consistent position */
+  .project-detail.other-works .project-detail-title {
+    position: static !important;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 20px 0 10px !important;
+    padding: 0 8px;
+    flex-shrink: 0;
+    justify-content: center;
+  }
+
+  .project-detail.other-works .project-detail-title .glitch-heading {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  /* Slider section */
+  .project-detail.other-works.no-sidebar-space .project-stage {
+    position: relative;
+    top: auto !important;
+    order: 2;
+    width: 100%;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Back button: always below the slider */
+  .project-detail.other-works.no-sidebar-space .other-works-back {
+    position: static !important;
+    order: 3;
+    width: 100%;
+    max-width: 560px;
+    height: auto !important;
+    margin: 12px auto 0 !important;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .project-detail.other-works .other-works-back .project-back-wrap {
+    position: static;
+    width: 240px;
+    height: 64px;
+  }
+}
+
+/* Tablet: 601px–1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .project-detail.other-works > * {
+    max-width: 760px;
+  }
+
+  .project-detail.other-works.no-sidebar-space .other-works-back {
+    max-width: 760px;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  body .app-content:has(.projects) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    height: 100dvh;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body .app-content:has(.projects) > .page-transition-wrapper {
+    display: block;
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    transform: none;
+  }
+
+  .projects {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    margin: 0;
+    padding: 20px 16px calc(var(--nav-h, 150px) + 32px) !important;
+    box-sizing: border-box;
+  }
+
+  .projects .projects-title {
+    position: relative;
+    height: auto;
+    margin: 0 0 24px;
+  }
+}
